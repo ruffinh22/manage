@@ -1,0 +1,30 @@
+{% extends "templates/base.html" %}
+{% block title %}Lister les matières{% endblock %}
+
+{% block content %}
+<h1>Lister les matières</h1>
+{% if not matieres %}
+	<p>Il faut créer les matières avant de pouvoir les lister.</p> 
+{% else %}
+	<table >
+	<tr>
+		<th>Code PPN Matière</th>
+		<th>Code Apogée Matière</th>
+		<th>Intitulé</th>
+		<th>Coefficient</th>
+		<th>Supprimer</th>
+	</tr>
+{% endif %}
+
+{% for mat in matieres %}
+	<tr>
+		<td>{{ mat.code_ppn }}</td>
+		<td>{{ mat.code_apogee }}</td>
+		<td>{{ mat.intitule }}</td>
+		<td>{{ mat.coefficient }}</td>
+		<td><a href="supprmat/{{ mat.id }}"><button>Supprimer <i style="color:red" class="fa fa-trash" aria-hidden="true"></i></button></a></td>
+	</tr>
+{% endfor %}
+</table>
+
+{% endblock %}

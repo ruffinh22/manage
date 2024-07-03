@@ -1,0 +1,52 @@
+{% extends "templates/base.html" %}
+{% block title %}GCE{% endblock %}
+
+{% block content %}
+<h1>Accueil</h1>
+<table>
+	<tr>
+		<th>Actions</th>
+		<th>Etudiant</th>
+		<th>Note</th>
+		<th>Diplome</th>
+		<th>Semestre</th>
+		<th>Annee</th>
+		<th>Matiere</th>
+		<th>UE</th>
+	</tr>
+
+	<tr>
+		<td>Ajouter</td>
+		<td><a href="/Etudiant/ajouterEtudiant">Ajouter un étudiant</a></td>
+		<td><a href="/Note/importer_csv">Importer un CSV(Ajouter notes)</a></td>
+		<td><a href="/Diplome/ajouterDiplome">Ajouter un diplome</a></td>
+		<td><a href="/Semestre/ajouterSemestre">Ajouter un Semestre</a></td>
+		<td><a href="/Annee/ajouterAnnee">Ajouter une Annee</a></td>
+		<td><a href="/Matiere/ajouterMatiere">Ajouter une matiere</a></td>
+		<td><a href="/UE/ajouterUE">Ajouter une UE</a></td>
+	</tr>
+	<tr>
+		<td>Lister</td>
+		<td><a href="/Etudiant/listeretus">Lister les étudiants</a></td>
+		<td><a href="/Note/listernotes">Lister les notes</a></td>
+		<td><a href="/Diplome/listerDiplomes">Lister les diplômes</a></td>
+		<td><a href="/Semestre/listerSemestre">Lister les Semestres</a></td>
+		<td><a href="/Annee/listerAnnees">Lister les années</a></td>
+		<td><a href="/Matiere/listermatieres">Lister les matières</a></td>
+		<td><a href="/UE/listerUE">Lister les UE</a></td>
+	</tr>
+	<tr>
+		<td>Modifier</td>
+		<td><a href="/Etudiant/complement_etu">Compléter les informations d'un étudiant</a></td>
+		<td><a href="/Note/modifierNote">Modifier une note</a></td>
+		<td><a href="/Diplome/modifierDiplome">Modifier un diplôme</a></td>
+		<td><a href="/Semestre/modifierSemestre">Modifier un semestre</a></td>
+		<td><a href="/Annee/modifierAnnee">Modifier une annee</a></td>
+		<td><a href="/Matiere/modifierMatiere">Modifier une matiere</a></td>
+		<td><a href="/UE/modifierUe">Modifier une ue</a></td>
+	</tr>
+
+
+</table>
+
+{% endblock %}

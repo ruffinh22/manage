@@ -1,0 +1,27 @@
+{% extends "templates/base.html" %}
+{% block title %}Aides et informations sur le logiciel{% endblock %}
+
+{% block content %}
+	<h1>Aides et Infos</h1>
+	<h2>Scénario Classique</h2>
+	<ol>
+		<li><a href="/Annee/ajouterAnnee">Création d'une année</a></li>
+		<li><a href="/Diplome/ajouterDiplome">Création du diplôme</a></li>
+		<li><a href="/Semestre/ajouterSemestre">Création d'un semestre</a></li>
+		<li><a href="/UE/ajouterUE">Création des UES</a></li>
+		<li><a href="/Matiere/ajouterMatiere">Création des matières</a></li>
+		<li><a href="/Etudiant/ajouterEtudiant">Création des étudiants</a></li>
+		<li><a href="/Note/importer_csv">Importation des notes</a></li>
+	</ol>
+	<h2>Notes</h2>
+	<p>Les notes sont importées depuis un fichier CSV.</p>
+	<h2>Étudiants</h2>
+	<p>Les étudiants doivent être créés avant l'importation des notes, si un étudiant n'est pas crée, ses notes seront ignorées.</p>
+	<p>Les informations sur les étudiants peuvent être complétées une fois l'importation terminée</p>
+	<p>Pour faire un affichage complet des notes d'un étudiant,cet étudiant doit avoir des notes de saisi</p>
+	<h2>Matières</h2>
+	<p>Les matières doivent être créées avant l'importation des notes, si une matière n'est pas créée, les notes seront ignorées.</p>
+	<p>Les matières peuvent être liées manuellement a des UE</p>
+	<h2>UE</h2>
+	<p>Les UE doivent être créées et rattachées manuellement à une ou plusieurs matières après importation</p>
+{% endblock %}

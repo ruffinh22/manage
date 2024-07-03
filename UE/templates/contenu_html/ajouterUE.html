@@ -1,0 +1,28 @@
+{% extends "templates/base.html" %}
+{% block title %}Ajouter une UE{% endblock %}
+{% block content %}
+	<h1>Ajouter une UE</h1>
+
+	{% if not res %} 
+		{% if not res2 %}
+		<form enctype="multipart/form-data" action="{% url "ajouterUE" %}" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			
+			<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+		</form>
+		{% else %}
+			<p>Création d'une UE réussie.</p>
+			<button onclick="document.location.href = '/UE/ajouterUE';">Ajouter une nouvelle unité d'enseignement <i class="fa fa-retweet" aria-hidden="true"></i></button>
+			<button onclick="document.location.href = '/Matiere/ajouterMatiere';">Étape suivante <i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+		{% endif %}
+	{% else %}
+	<form enctype="multipart/form-data" action="{% url "ajouterUE" %}" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<p>PPN Semestre : {{ e.code_ppn }}</p>
+		<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+	</form>
+	{% endif %}
+
+{% endblock %}

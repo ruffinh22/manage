@@ -1,0 +1,24 @@
+{% extends "templates/base.html" %}
+{% load static %}
+{% block title %}Génération des documents{% endblock %}
+{% block content %}
+<h1>Génération des documents</h1>
+	{% if res %}
+		{% if pasSemestre %}
+			<p>Impossible de générer les documents pour le semestre 1 car aucun semestre ne précède le premier semestre.</p>
+			<a href="/Documents/genererDocuments"><button>Changer de semestre <i class="fa fa-reply" aria-hidden="true"></i></button></a>
+			<a href="/"><button>Retour à l'accueil <i class="fa fa-reply" aria-hidden="true"></i></button></a>
+		{% else %}
+			<p>Documents générés. Ces documents peuvent être imcomplet s'il manque des notes dans la base</p>
+			<a href="{% static 'documents/PV/pv_semestre.docx' %}" download="{{ nom_fichier_pv }}.docx"><button>Télécharger les PV <i class="fa fa-download" aria-hidden="true"></i></button></a>
+			<a href="{% static 'documents/resultat_semestre/res_semestre.xls' %}" download="{{ nom_fichier_semestre }}.xls"><button>Télécharger les résultats <i class="fa fa-download" aria-hidden="true"></i></button></a>
+			<a href="/"><button>Retour à l'accueil <i class="fa fa-reply" aria-hidden="true"></i></button></a>
+		{% endif %}
+	{% else %}
+	<form enctype="multipart/form-data" action="{% url "genererDocuments" %}" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+	</form>
+	{% endif %}
+{% endblock %}

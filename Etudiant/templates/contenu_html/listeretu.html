@@ -1,0 +1,114 @@
+{% extends "templates/base.html" %}
+{% block title %}Etudiants{% endblock %}
+
+{% block content %}
+<h1>Étudiant {{ etu.nom }}</h1>
+<table id="b">
+	<tr>
+		<th>Nom</th>
+		<td>{{ etu.nom }}</td>
+		<th>Prenom</th>
+		<td>{{ etu.prenom }}</td>
+	</tr>
+	<tr>
+		<th>Bourse</th>
+		<td>{{ etu.bourse }}</td>
+		
+		<th>ID</th>
+		<td>{{ etu.id }}</td>
+	</tr>
+	<tr>
+		<th>APOGEE</th>
+		<td>{{ etu.apogee }}</td>
+		
+		<th>SEXE</th>
+		<td>{{ etu.sexe }}</td>
+	</tr>
+	<tr>
+		<th>Date de naissance</th>
+		<td>{{ etu.date_naissance }}</td>
+		
+		<th>Adresse</th>
+		<td>{{ etu.adresse }}</td>
+	</tr>
+	<tr>
+		<th>INE</th>
+		<td>{{ etu.ine }}</td>
+		
+		<th>Adresse des parents</th>
+		<td>{{ etu.adresse_parents }}</td>
+	</tr>
+	<tr>	
+		<th>Téléphone</th>
+		<td>{{ etu.tel }}</td>
+
+		<th>Téléphone des parents</th>
+		<td>{{ etu.tel_par }}</td>
+	</tr>
+	<tr>
+		<th>Lieu de naissance</th>
+		<td>{{ etu.lieu_naissance }}</td>
+
+		<th>Nationalité</th>
+		<td>{{ etu.nationalite }}</td>
+	</tr>
+	<tr>
+		<th>Situation Familiale</th>
+		<td>{{ etu.situation_familiale }}</td>
+
+		<th>Situation militaire</th>
+		<td>{{ etu.situation_militaire }}</td>
+	</tr>
+	<tr>
+		<th>Catégorie Socio-professionnelle du chef de famille</th>
+		<td>{{ etu.cate_socio_pro_chef_famille }}</td>
+
+		<th>Catégorie Socio-professionnelle de l'autre parent</th>
+		<td>{{ etu.cate_socio_pro_autre_parent }}</td>
+	</tr>
+	<tr>
+		<th>Aide financière</th>
+		<td>{{ etu.aide_financiere }}</td>
+	</tr>
+
+</table>
+
+<hr />
+
+{% if not notes %}
+	<p>L'étudiant n'a pas de notes</p> 
+{% else %}
+	<p style="text-align: left">Liste des notes de l'étudiant :</p>
+	<table style="border:1px solid black; border-collapse : collapse;">
+	<tr>
+		<th style="border:1px solid black;">Note</th>
+		<th style="border:1px solid black;">Matière</th>
+	</tr>
+	{% for note in notes %}
+		<tr>
+			<td style="border:1px solid black;">{{ note.valeur }}</td>
+			<td style="border:1px solid black;">{{ note.matiere.intitule }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endif %}
+
+{% if not appartients %}
+	<p>L'étudiant n'a jamais été inscrit dans un semestre.</p> 
+{% else %}
+	<p style="text-align: left">Liste des semestres que l'étudiant a fait :</p>
+	<table style="border:1px solid black; border-collapse : collapse;">
+	<tr>
+		<th style="border:1px solid black;">Année</th>
+		<th style="border:1px solid black;">Semestre</th>
+	</tr>
+	{% for appartient in appartients %}
+		<tr>
+			<td style="border:1px solid black;">{{ appartient.instance_semestre.annee }}</td>
+			<td style="border:1px solid black;">{{ appartient.instance_semestre.semestre }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endif %}
+
+{% endblock %}

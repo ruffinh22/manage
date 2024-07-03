@@ -1,0 +1,52 @@
+{% extends "templates/base.html" %}
+{% block title %}Affichage complet des notes d'un étudiant{% endblock %}
+
+<!-- DJANGO SELECT -->
+<!-- V1 Faire afficher tous les étus dispo -->
+<!-- V2 Faire afficher les étus n'ayant pas toutes les infos de renseignées -->
+{% block content %}
+	<h1>Affichage complet des notes d'un étudiant</h1>
+	{% if not res and not semestre %} 
+		<form enctype="multipart/form-data" action="{% url "affichageComplet" %}" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+		</form>
+	{% else %}
+		{% if not semestre %}
+			<p>L'étudiant n'a pas de semestre</p>
+		{% else %}
+			<p>Vous avez sélectionné l'étudiant(e) : {{ e.nom }} {{ e.prenom }}</p>
+			<table class="affComplet">
+			{% for l in lst %}
+				<tr class="ligne">
+					<td class="colonne">{{ l.0 }}</td>
+					<td>{{ l.1 }}</td>
+					<td>{{ l.2 }}</td>
+					<td>{{ l.3 }}</td>	
+				</tr>	
+			{% endfor %}
+			</table>
+		{% endif %}
+	{% endif %}
+<script type="text/javascript">
+	var trs = document.getElementsByClassName('ligne');
+	var tds = document.getElementsByClassName('colonne');
+	var i = 0
+	for(td in tds){
+		if(i%2 == 1){
+			trs[i].style.backgroundColor = "#e0e0e0" ;
+		}
+		if(tds[i].innerHTML.indexOf("Semestre") >= 0){
+			tds[i].style.paddingLeft = "30px";
+		}else if(tds[i].innerHTML.indexOf("UE") >= 0){
+			tds[i].style.paddingLeft = "60px";
+		}else if(tds[i].innerHTML.indexOf("Elements") >= 0){
+			tds[i].style.paddingLeft = "10px";
+		}else{
+			tds[i].style.paddingLeft = "90px";
+		}
+		i++;
+	}
+</script>
+{% endblock %}

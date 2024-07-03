@@ -1,0 +1,37 @@
+{% extends "templates/base.html" %}
+{% block title %}Lister les étudiants{% endblock %}
+
+{% block content %}
+<h1>Lister les étudiants</h1>
+{% if not etus %}
+	<p>Il faut créer les étudiant avant de pouvoir les lister.</p> 
+{% else %}
+	<table>
+	<tr>
+		<th>Nom</th>
+		<th>Prenom</th>
+		<th>Apogée</th>
+		<th>Supprimer</th>
+	</tr>
+{% endif %}
+
+{% for etu in etus %}
+	<tr>
+		<td><a href="listeretu/{{ etu.id }}">{{ etu.nom }}</a></td>
+		<td>{{ etu.prenom }}</td>
+		<td>{{ etu.apogee }}</td>
+		<td><a href="suppretu/{{ etu.id }}"><button>Supprimer <i style="color:red;" class="fa fa-trash" aria-hidden="true"></i></button></a></td>
+	</tr>
+{% endfor %}
+</table>
+<script>
+	function suppression(){
+		if(confirm("Voulez-vous vraiment supprimer les étudiants ?")){
+			window.location = "suppall"
+		}
+	}
+</script>
+<p><a onclick="suppression();"><button>Supprimer tous les étudiants <i style="color:red;" class="fa fa-trash" aria-hidden="true"></i></button></a></p>
+<a href="/"><button>Retour à l'accueil <i class="fa fa-reply" aria-hidden="true"></i></button></a>
+<p>Attention, supprimer un étudiant supprimera toutes les notes qui lui sont associées.</p>
+{% endblock %}

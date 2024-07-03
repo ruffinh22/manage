@@ -1,0 +1,33 @@
+{% extends "templates/base.html" %}
+{% block title %}Unités d'enseignements{% endblock %}
+
+{% block content %}
+<<<<<<< HEAD
+<h1>Unités d'enseignements</h1>
+=======
+<h1>Lister les UE</h1>
+>>>>>>> 9b5bcfae848fba9513418a6bd00d464623ec7f70
+{% if not ues %}
+	<p>Pas d'unité d'enseignement</p> 
+{% else %}
+	<table style="border:1px solid black; border-collapse : collapse;">
+	<tr>
+		<th style="border:1px solid black;">Intitule</th>
+		<th style="border:1px solid black;">Code</th>
+		<th style="border:1px solid black;">Semestre</th>
+		<th style="border:1px solid black;">Supprimer</th>
+
+	</tr>
+{% endif %}
+
+{% for ue in ues %}
+	<tr>
+		<td style="border:1px solid black;"><a href="detailUE/{{ ue.id }}">{{ ue.intitule }}</a></td>
+		<td style="border:1px solid black;">{{ ue.code }}</td>
+		<td style="border:1px solid black;">{{ ue.semestre }}</td>
+		<td><a href="supprue/{{ ue.id }}">Supprimer</a></td>
+	</tr>
+{% endfor %}
+</table>
+<p>Attention, supprimer une UE supprimera toute les matières qui lui sont associées.</p>
+{% endblock %}

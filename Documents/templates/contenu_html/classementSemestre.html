@@ -1,0 +1,15 @@
+{% extends "templates/base.html" %}
+{% block title %}Résultat Jury{% endblock %}
+
+{% block content %}
+    {% if not res %}
+        <form enctype="multipart/form-data" action="{% url "classementSemestre" %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+        </form>
+    {% else %}
+        <p>Classement</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "templates/base.html" %}
+{% block title %}Faire évoluer l'instance d'un semestre{% endblock %}
+
+{% block content %}
+    {% if not res %}
+			{% if not res2 %}
+                <h1>Choisir le semestre actuel que vous souhaitez traiter</h1>
+                <p>Vous allez pouvoir faire évoluer la situtation des étudiants présents dans ce semestre. (Faire passer un élève du S1 au S2)</p>
+                <p>Vous devez avoir créer l'instance du semestre au préalale.</p>
+                    <form enctype="multipart/form-data" action="{% url "faireEvoluerInstanceSemestre" %}" method="post">
+		                {% csrf_token %}
+                        {{ form.as_p }}
+                    <button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+                    </form>
+			{% else %}
+                <h1>Changement de semestre pour les étudiants</h1>
+				<p>Modification du semestre pour les étudiants réussie.</p>
+                <a href="/"><button>Retour à l'accueil <i class="fa fa-reply" aria-hidden="true"></i></button></a>
+			{% endif %}
+	{% else %}
+		 <h1>Liste des étudiants du semestre {{ instance.semestre }} et de l'annee {{ instance.annee }} : </h1>
+         <form enctype="multipart/form-data" action="{% url "faireEvoluerInstanceSemestre" %}" method="post">
+		    {% csrf_token %}
+            <table>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Résultats</th>
+                    <th><input type="checkbox" name="allCheck" id="allCheck"></th>
+                </tr>
+                {% for ligne in listeEvolution %}
+                    <tr>
+                        <td>{{ ligne.0 }}</td>
+                        <td>{{ ligne.1 }}</td>
+                        <td>{{ ligne.2 }}</td>
+                        <td>{{ ligne.3 }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        <p>Sélectionner le semestre de destinations des étudiants sélectionnés</p>
+        <p><label>Semestre de destination : </label>{{ form.select }}</p>
+		<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+	    </form>
+	{% endif %}
+<script>
+    $("#allCheck").on("change",function(){
+        console.log("Test");
+        $("input[type='checkbox']").each(function(){
+            if(this.checked){
+                $(this).prop("checked", false );
+            }else{
+                $(this).prop("checked", true );
+            }
+
+        });
+    });
+</script>
+{% endblock %}

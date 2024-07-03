@@ -1,0 +1,16 @@
+{% extends "templates/base.html" %}
+{% block title %}Ajouter un diplome{% endblock %}
+{% block content %}
+<h1>Ajout d'un diplome</h1>
+	{% if res %}
+	<p>Création du diplome réussie.</p>
+	<a href="/Diplome/ajouterDiplome"><button>Ajouter un nouveau diplome <i class="fa fa-retweet" aria-hidden="true"></i></button></a>
+	<a href="/Semestre/ajouterSemestre"><button>Étape suivante <i class="fa fa-chevron-right" aria-hidden="true"></i></button></a>
+	{% else %}
+	<form enctype="multipart/form-data" action="{% url "ajouterDiplome" %}" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+	</form>
+	{% endif %}
+{% endblock %}

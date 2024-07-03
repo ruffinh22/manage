@@ -1,0 +1,26 @@
+{% extends "templates/base.html" %}
+{% block title %}Ajouter une matière{% endblock %}
+{% block content %}
+	<h1>Ajouter une matière (Dernière étape)</h1>
+
+	{% if not res %} 
+		{% if not res2 %}
+		<form enctype="multipart/form-data" action="{% url "ajouterMatiere" %}" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			
+			<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+		</form>
+		{% else %}
+			<p>Création de la matière réussie.</p>
+		<button type="button" onclick="document.location.href = '/Matiere/ajouterMatiere';">Ajouter une nouvelle matière <i class="fa fa-retweet" aria-hidden="true"></i></button>
+		{% endif %}
+	{% else %}
+	<form enctype="multipart/form-data" action="{% url "ajouterMatiere" %}" method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<p>Unité d'enseignement : {{ e.code_ppn }}</p>
+		<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+	</form>
+	{% endif %}
+{% endblock %}

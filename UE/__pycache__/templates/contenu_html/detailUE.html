@@ -1,0 +1,25 @@
+{% extends "templates/base.html" %}
+{% block title %}Unite d'enseignement{% endblock %}
+
+{% block content %}
+<h1>UE {{ ue.intitule }}</h1>
+<table id="b">
+
+{% if not matieres %}
+	<p>L'UE {{ ue.intitule }} n'a pas de matieres</p> 
+{% else %}
+	<table style="border:1px solid black; border-collapse : collapse;">
+	<tr>
+		<th style="border:1px solid black;">Matiere</th>
+		<th style="border:1px solid black;">Coefficient</th>
+	</tr>
+{% endif %}
+
+{% for matiere in matieres %}
+	<tr>
+		<td style="border:1px solid black;">{{ matiere.intitule }}</td>
+		<td style="border:1px solid black;">{{ matiere.coefficient }}</td>
+	</tr>
+{% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "templates/base.html" %}
+{% block title %}Lister les Années{% endblock %}
+
+{% block content %}
+<h1>Lister les années</h1>
+{% if not annees %}
+	<p>Il faut créer des années avant de pouvoir les lister.</p> 
+{% else %}
+	<table>
+	<tr>
+		<th>Année</th>
+		<th>Id</th>
+		<th>Supprimer</th>
+	</tr>
+{% endif %}
+
+{% for annee in annees %}
+	<tr>
+		<td>{{ annee.intitule }}</td>
+		<td>{{ annee.id }}</td>
+		<td><a href="supprann/{{ annee.id }}"><button>Supprimer <i style="color:red;" class="fa fa-trash" aria-hidden="true"></i></button></a></td>
+	</tr>
+{% endfor %}
+</table>
+{% endblock %}

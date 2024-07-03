@@ -1,0 +1,25 @@
+{% extends "templates/base.html" %}
+{% block title %}Étudiants du Semestre{% endblock %}
+
+{% block content %}
+
+    <h2>Étudiants du Semestre 1 (à finir)</h2>
+
+    <table>
+        <tr>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Apogée</th>
+        </tr>
+        {% for app in App %}
+            <tr>
+                <td>{{app.etudiant.nom}}</td>
+                <td>{{app.etudiant.prenom}}</td>
+                <td>{{app.etudiant.apogee}}</td>
+            </tr>
+    	{% endfor %}
+    </table>
+
+
+
+{% endblock %}

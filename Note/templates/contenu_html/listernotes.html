@@ -1,0 +1,37 @@
+{% extends "templates/base.html" %}
+{% block title %}Notes{% endblock %}
+
+{% block content %}
+<h1>Lister les notes</h1>
+{% if not notes %}
+	<p>Il faut importer les notes avant de pouvoir les faire afficher</p> 
+{% else %}
+	<table style="border:1px solid black; border-collapse : collapse;">
+	<tr>
+		<th style="border:1px solid black;">Note</th>
+		<th style="border:1px solid black;">Nom</th>
+		<th style="border:1px solid black;">Prenom</th>
+		<th style="border:1px solid black;">Matière</th>
+		<th style="border:1px solid black;">Supprimer</th>
+	</tr>
+{% endif %}
+
+{% for note in notes %}
+	<tr>
+		<td style="border:1px solid black;">{{ note.valeur }}</td>
+		<td style="border:1px solid black;"><a href="/Etudiant/listeretu/{{ note.etudiant_id }}">{{ note.etudiant.nom }}</a></td>
+		<td style="border:1px solid black;">{{ note.etudiant.prenom }}</td>
+		<td style="border:1px solid black;">{{ note.matiere.intitule }}</td>
+		<td style="border:1px solid black;"><a href="supprnote/{{ note.etudiant.id }}">Supprimer</a></td>
+	</tr>
+{% endfor %}
+</table>
+<script>
+	function suppresion(){
+		if(confirm("Voulez-vous vraiment supprimer les notes ?")){
+			window.location = "suppall"
+		}
+	}
+</script>
+<p><a onclick="suppresion();"><button>Supprimer toutes les notes <i style="color:red;" class="fa fa-trash" aria-hidden="true"></i></button></a></p>
+{% endblock %}

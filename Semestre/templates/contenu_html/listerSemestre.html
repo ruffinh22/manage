@@ -1,0 +1,25 @@
+{% extends "templates/base.html" %}
+{% block title %}Semestres{% endblock %}
+
+{% block content %}
+<h1>Semestres</h1>
+{% if not semestre %}
+	<p>Il faut créer les semestres avant de pouvoir les faire afficher.</p> 
+{% else %}
+	<table style="border:1px solid black; border-collapse : collapse;">
+	<tr>
+		<th style="border:1px solid black;">Code PPN</th>
+		<th style="border:1px solid black;">Code Apogée</th>
+		<th style="border:1px solid black;">Supprimer</th>
+	</tr>
+{% endif %}
+
+{% for sem in semestre %}
+	<tr>
+		<td style="border:1px solid black;">{{ sem.code_ppn }}</td>
+		<td style="border:1px solid black;">{{ sem.code_apogee }}</td>
+		<td><a href="supprsem/{{ sem.id }}"><button>Supprimer <i style="color:red" class="fa fa-trash" aria-hidden="true"></i></button></a></td>
+	</tr>
+{% endfor %}
+</table>
+{% endblock %}

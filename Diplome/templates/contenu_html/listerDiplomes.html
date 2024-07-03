@@ -1,0 +1,25 @@
+{% extends "templates/base.html" %}
+{% block title %}Diplomes enregistrés{% endblock %}
+
+{% block content %}
+<h1>Lister les diplômes</h1>
+{% if not dips %}
+	<p>Il faut créer des diplômes avant de pourvoir les lister.</p> 
+{% else %}
+	<table style="border:1px solid black; border-collapse : collapse;">
+	<tr>
+		<th style="border:1px solid black;">Id</th>
+		<th style="border:1px solid black;">Nom</th>
+		<th style="border:1px solid black;">Supprimer</th>
+	</tr>
+{% endif %}
+
+{% for dip in dips %}
+	<tr>
+		<td style="border:1px solid black;">{{ dip.id }}</td>
+		<td style="border:1px solid black;">{{ dip.intitule }}</td>
+		<td><a href="supprdip/{{ dip.id }}"><button>Supprimer <i style="color:red" class="fa fa-trash" aria-hidden="true"></i></button></a></td>
+	</tr>
+{% endfor %}
+</table>
+{% endblock %}

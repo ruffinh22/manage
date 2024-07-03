@@ -1,0 +1,34 @@
+{% extends "templates/base.html" %}
+{% block title %}Importer des étudiants{% endblock %}
+
+{% block content %}
+	<h1>Importer des étudiants</h1>
+
+
+	{% if not res %} 
+			{% if not res2 %}
+				{% if not inst %}
+					<p>Aucune Instance de semestre n'est disponible, commencez par en créer une.</p>
+				{% else %}
+					<form enctype="multipart/form-data" action="{% url "importer_etu" %}" method="post">
+						{% csrf_token %}
+						{{ form.as_p }}
+						<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+					</form>
+				{% endif %}
+			{% else %}
+				<p>Importation des étudiants réussie</p>
+				<p>{{ nb_etu }} étudiant(s) créés</p>
+			<p><a href="/"><button>Retour à l'accueil<i class="fa fa-reply" aria-hidden="true"></i></button></a></p>
+			<p><a href="/Etudiant/importer_etu"><button>Importer de nouveaux étudiants<i class="fa fa-retweet" aria-hidden="true"></i></button></a></p>
+			{% endif %}
+		{% else %}
+			<p>Vous avez sélectionné le semestre : {{ instanceSemestre.semestre }} {{ instanceSemestre.annee }}</p>
+			<p>Les étudiants seront automatiquement affectés à ce semestre.</p>
+			<form enctype="multipart/form-data" action="{% url "importer_etu" %}" method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+			</form>
+	{% endif %}
+{% endblock %}

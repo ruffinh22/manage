@@ -1,0 +1,45 @@
+{% extends "templates/base.html" %}
+{% block title %}Résultat Jury{% endblock %}
+
+{% block content %}
+<h1>Résultat Jury</h1>
+	{% if not res %} 
+			<form enctype="multipart/form-data" action="{% url "resultatJury" %}" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+	</form>
+			
+	{% else %}
+	<p>Si aucun résultat n'est présent, vous pouvez les générer <a href="/Note/listerResultat"><button>ici</button></a></p>
+	
+	<table style="border:1px solid black; border-collapse : collapse;">
+	<tr>
+		<th style="border:1px solid black;">Etudiant</th>
+		<th style="border:1px solid black;">Année</th>
+		<th style="border:1px solid black;">Semestre</th>
+		<th style="border:1px solid black;">Note</th>
+		<th style="border:1px solid black;">Note calculée</th>
+		<th style="border:1px solid black;">Résultat</th>
+		<th style="border:1px solid black;">Résultat pré jury</th>
+		<th style="border:1px solid black;">Résultat jury</th>
+	</tr>
+
+	{% for resultat in resultatsJury %}
+	<tr>
+		<td style="border:1px solid black;">{{ resultat.etudiant.nom}} <br> {{ resultat.etudiant.prenom }}</td>
+		<td style="border:1px solid black;">{{ resultat.instance_semestre.annee }}</td>
+		<td style="border:1px solid black;">{{ resultat.instance_semestre.semestre }}</td>
+		<td style="border:1px solid black;">{{ resultat.note }}</td>
+		<td style="border:1px solid black;">{{ resultat.note_calc }}</td>
+		<td style="border:1px solid black;">{{ resultat.resultat }}</td>
+		<td style="border:1px solid black;">{{ resultat.resultat_pre_jury }}</td>
+		<td style="border:1px solid black;">{{ resultat.resultat_jury }}</td>
+		<td style="border:1px solid black;"><a href="completerResultat/{{ resultat.etudiant.id }}/{{ resultat.instance_semestre.id }}"><button>Saisir les résultats du jury <i class="fa fa-chevron-right" aria-hidden="true"></i></button></a></td>
+
+	</tr>
+	{% endfor %}
+	</table>
+
+	{% endif %}
+{% endblock %}

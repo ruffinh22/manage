@@ -1,0 +1,23 @@
+{% extends "templates/base.html" %}
+{% block title %}Ajouter un étudiant{% endblock %}
+
+{% block content %}
+	<h1>Ajouter un étudiant</h1>
+	{% if exist %}
+		<p>Un étudiant avec ce numéro apogée existe déjà</p>
+		<a href="/Etudiant/ajouterEtudiant"><button>Ajouter un autre étudiant <i class="fa fa-retweet" aria-hidden="true"></i></button></a>
+		<a href="/"><button>Retour à l'accueil <i class="fa fa-reply" aria-hidden="true"></i></button></a>
+	{% else %}
+		{% if res %}
+			<p>Ajout de l'étudiant réussi dans la BD</p>
+			<a href="/Etudiant/ajouterEtudiant"><button>Ajouter un autre étudiant <i class="fa fa-retweet" aria-hidden="true"></i></button></a>
+			<a href="/"><button>Retour à l'accueil <i class="fa fa-reply" aria-hidden="true"></i></button></a>
+		{% else %}
+			<form enctype="multipart/form-data" action="{% url "ajouterEtudiant" %}" method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+			</form>
+		{% endif %}
+	{% endif %}
+{% endblock %}

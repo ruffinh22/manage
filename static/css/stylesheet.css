@@ -1,0 +1,219 @@
+@font-face {
+    font-family: walkway;
+    src: url(walkway.ttf);
+}
+
+a{
+	color:#222222;
+	text-decoration: none;
+}
+
+table a {
+	color: blue;
+	text-decoration: underline;
+}
+
+a:visited{
+	color:blue;
+	text-decoration: none;
+}
+
+html,body{
+	height: 100%;
+}
+
+body{
+	font-family: "Segoe UI", Verdana, serif;
+	font-size:12pt;
+	margin:0;
+	padding:0;
+}
+
+#header{
+	width:100%;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	background-color:#222222;
+	box-shadow:0 0 20px #000000;
+	border-bottom:solid #444444 8px;
+	font-family: walkway;
+}
+
+#GCE{
+	color: #00A99D;
+}
+
+
+/*#footer{
+	width: 100%;
+	background-color:#222222;
+	box-shadow:0 0 20px #000000;
+	border-top:solid #444444 8px;
+	position: absolute;
+	bottom:0;
+	text-align: center;
+	color: white;
+}*/
+
+#menu a {
+	color: white;
+	font-size: 15px;
+	font-family: walkway;
+}
+
+.sous-menu{
+	margin-top: 10px;
+}
+
+.sous-menu li{
+	border-radius: 5px;
+	margin:5px;
+}
+
+li {
+	border : 1px solid white;
+	padding: 5px 0px 5px 0px;
+	background-color :gray;
+	cursor: pointer;
+	padding-left: 10px;
+}
+
+li:hover{
+	background : #00A99D;
+	padding-left : 30px ;
+	-webkit-transition : all 0.3s;
+	-moz-transition : all 0.3s;
+	transition: all 0.3s;
+}
+
+#menu-deroulant, #menu-deroulant ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+h1{
+	text-shadow:1px 1px 2px #333333;
+	text-align: left;
+	color:white;
+	margin-left: 50px;
+	font-size: 1.5em;
+    display: inline-block;
+}
+
+#menu{
+	background: linear-gradient(to bottom, #444444, white);
+	/*background-color:#444444;*/
+	width: 200px;
+	height: 80%;
+	padding: 10px;
+	padding-top: 0px;
+	float: left;
+}
+
+.sous-menu li{
+	border : 0;
+    padding: 5px 10px 5px 10px;
+    transform: inherit;
+}
+
+#main{
+	width : 800px;
+	margin:auto;
+	text-align: center;
+	margin-top: 50px;
+}
+
+table{
+	border:1px solid black;
+	border-collapse : collapse;
+}
+
+#main h1{
+	color: black;
+}
+
+table{
+	margin: 50px 50px 50px 50px;
+}
+
+td, th{
+	padding: 5px;
+	border:1px solid black;
+}
+
+#logo{
+	vertical-align: middle;
+	width: 200px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.admin{
+    float:right;
+}
+
+#labelMode{
+    color:white;
+}
+
+.affComplet td{
+	width: 50px;
+}
+
+td.colonne{
+	width: 300px;
+}
+
+/*
+    SWITCH BUTTON
+*/
+
+.toggle-btn {
+  width: 80px;
+  height: 40px;
+  margin: 10px;
+  border-radius: 50px;
+
+  position: relative;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAyklEQVQ4T42TaxHCQAyENw5wAhLACVUAUkABOCkSwEkdhNmbpHNckzv689L98toIAKjqGcAFwElEFr5ln6ruAMwA7iLyFBM/TPDuQSrxwf6fCKBoX2UMIYGYkg8BLOnVg2RiAEexGaQQq4w9e9klcxGLLAUwgDAcihlYAR1IvZA1sz/+AAaQjXhTQQVoe2Yo3E7UQiT2ijeQdojRtClOfVKvMVyVpU594kZK9zzySWTlcNqZY9tjCsUds00+A57z1e35xzlzJjee8xf0HYp+cOZQUQAAAABJRU5ErkJggg==") no-repeat 50px center #e74c3c;
+  cursor: pointer;
+  -webkit-transition: background-color .40s ease-in-out;
+  -moz-transition: background-color .40s ease-in-out;
+  -o-transition: background-color .40s ease-in-out;
+  transition: background-color .40s ease-in-out;
+  cursor: pointer;
+
+}
+.toggle-btn.active {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAmUlEQVQ4T6WT0RWDMAhFeZs4ipu0mawZpaO4yevBc6hUIWLNd+4NeQDk5sE/PMkZwFvZywKSTxF5iUgH0C4JHGyF97IggFVSqyCFga0CvQSg70Mdwd8QSSr4sGBMcgavAgdvwQCtApvA2uKr1x7Pu++06ItrF5LXPB/CP4M0kKTwYRIDyRAOR9lJTuF0F0hOAJbKopVHOZN9ACS0UgowIx8ZAAAAAElFTkSuQmCC") no-repeat 10px center #2ecc71;
+}
+.toggle-btn.active .round-btn {
+  left: 45px;
+}
+.toggle-btn .round-btn {
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  margin-top: -15px;
+  -webkit-transition: all .30s ease-in-out;
+  -moz-transition: all .30s ease-in-out;
+  -o-transition: all .30s ease-in-out;
+  transition: all .30s ease-in-out;
+}
+.toggle-btn .cb-value {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 9;
+  cursor: pointer;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+}

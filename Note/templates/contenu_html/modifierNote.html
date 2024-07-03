@@ -1,0 +1,29 @@
+{% extends "templates/base.html" %}
+{% block title %}Modifier les notes{% endblock %}
+
+
+<!-- DJANGO SELECT -->
+<!-- V1 Faire afficher tous les étus dispo -->
+<!-- V2 Faire afficher les étus n'ayant pas toutes les infos de renseignées -->
+{% block content %}
+	<h1>Modifier les notes</h1>
+
+	{% if not res %} 
+		{% if not res2 %}
+			<form enctype="multipart/form-data" action="{% url "modifierNote" %}" method="post">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+			</form>
+		{% else %}
+			<p>Modification des notes réussie.</p>
+		{% endif %}
+	{% else %}
+		<p>Vous avez sélectionné les notes de : {{ NOTES.0.etudiant }}</p>
+		<form enctype="multipart/form-data" action="{% url "modifierNote" %}" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+		</form>
+	{% endif %}
+{% endblock %}

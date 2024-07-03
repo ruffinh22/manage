@@ -1,0 +1,89 @@
+{% extends "templates/base.html" %}
+{% block title %}Importation des notes{% endblock %}
+
+{% block content %}
+	<h1>Importer des notes via un fichier</h1>
+
+	{% if res %}
+		{% if perf %}
+			<p>Importation des notes réussie dans la base</p>
+
+			<h2>Résultat de l'import ....</h2>
+		<table class="tab general">
+			<th>Nombre de notes ajoutées</th>
+			<th>Nombre de notes non renseignées </th>
+			<th>Nombre d'élèves ajoutées</th>
+			<th>Nombre d'élèves qui n'existent pas</th>
+
+			<tr>
+				<td>Il y a {{ compteur_note }} notes qui ont été ajoutées</td>
+				<td>Il y a {{ compteur_note_error }} notes qui n'ont pas été ajoutées</td>
+				<td>Les notes de {{ compteur_eleve }} élève(s) ont été prises en compte</td>
+				<td>Il y a {{ compteur_eleve_error }} élève(s) qui n'existent pas</td>
+			</tr>
+		</table>
+		{% else %}
+		<h2>Résultat de l'import ....</h2>
+		<table class="tab general">
+			<th>Nombre de notes ajoutées</th>
+			<th>Nombre de notes non renseignées </th>
+			<th>Nombre d'élèves ajoutées</th>
+			<th>Nombre d'élèves qui n'existent pas</th>
+
+			<tr>
+				<td>Il y a {{ compteur_note }} notes qui ont été ajoutées</td>
+				<td>Il y a {{ compteur_note_error }} notes qui n'ont pas été ajoutées</td>
+				<td>Les notes de {{ compteur_eleve }} élève(s) ont été prises en compte</td>
+				<td>Il y a {{ compteur_eleve_error }} élève(s) qui n'existent pas</td>
+			</tr>
+		</table>
+
+		<p><a href="/"><button>Retour à l'accueil <i class="fa fa-reply" aria-hidden="true"></i></button></a></p>
+		<p><a href="/Note/importer_csv"><button>Importer de nouvelles notes <i class="fa fa-retweet" aria-hidden="true"></i></button></a></p>
+
+		<table class="tab sem" id="tabSem">
+			<th>Erreurs liées aux semestres </th>	
+		{% for sem in ret_sem %}		
+			<tr><td>{{ sem }}</td></tr>
+		{% endfor %}	
+		</table>
+
+		<table class="tab ue">
+			<th>Erreurs liées aux Unités d'enseignements </th>	
+		{% for ue in ret_ue %}		
+			<tr><td>{{ ue }} n'existe pas</td></tr>
+		{% endfor %}	
+		</table>
+
+		<table class="tab mat">
+			<th>Erreurs liées aux matières </th>	
+		{% for mat in ret_mat %}		
+			<tr><td>{{ mat }}</td></tr>
+		{% endfor %}	
+		</table>
+
+		<table class="tab etu">
+			<th>Erreurs liées aux étudiants </th>	
+		{% for etu in ret_etu %}		
+			<tr><td>{{ etu }}</td></tr>
+		{% endfor %}	
+		</table>
+
+		<table class="tab notes">
+			<th>Erreurs liées aux notes </th>	
+		{% for note in ret_notes %}		
+			<tr><td>{{ note }}</td></tr>
+		{% endfor %}	
+		</table>
+
+		{% endif %}
+	{% else %}
+		<p>Le séparateur du fichier doit être le caractère ",". Chaque ligne doit comporter le même nombre de séparateur. Aucune ligne ne doit être vide même en fin de fichier.</p>
+		<form enctype="multipart/form-data" action="{% url "importer_csv" %}" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">Valider <i class="fa fa-check" aria-hidden="true"></i></button>
+		</form>
+	{% endif %}
+{% endblock %}
+

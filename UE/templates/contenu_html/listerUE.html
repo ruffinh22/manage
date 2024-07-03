@@ -1,0 +1,30 @@
+{% extends "templates/base.html" %}
+{% block title %}Unités d'enseignements{% endblock %}
+
+{% block content %}
+	<h1>Lister les unités d'enseignement</h1>
+	
+	{% if not ues %}
+		<p>Pas d'unité d'enseignement</p> 
+	{% else %}
+	<table style="border:1px solid black; border-collapse : collapse;">
+		<tr>
+			<th style="border:1px solid black;">Intitule</th>
+			<th style="border:1px solid black;">Code PPN</th>
+			<th style="border:1px solid black;">Code Apogée</th>
+			<th style="border:1px solid black;">Semestre</th>
+			<th style="border:1px solid black;">Supprimer</th>
+		</tr>
+	{% endif %}
+
+	{% for ue in ues %}
+		<tr>
+			<td style="border:1px solid black;"><a href="detailUE/{{ ue.id }}">{{ ue.intitule }}</a></td>
+			<td style="border:1px solid black;">{{ ue.code_ppn }}</td>
+			<td style="border:1px solid black;">{{ ue.code_apogee }}</td>
+			<td style="border:1px solid black;">{{ ue.semestre }}</td>
+			<td><a href="supprue/{{ ue.id }}"><button>Supprimer <i style="color:red" class="fa fa-trash" aria-hidden="true"></i></button></a></td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}
